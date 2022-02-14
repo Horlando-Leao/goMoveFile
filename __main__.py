@@ -28,12 +28,12 @@ except KeyError:
 
 list_files = func.convert_cvs_in_set(path_csv=csv_named_files)
 
-for file in list_files:
+for idx, file in enumerate(list_files):
     try:
         path_root_file = func.find_file(path_root=original_path, name_file=file)
         func.copy_file(path_file=path_root_file, path_destination=os.path.join(destination_path, file))
-        console.assertion(f"{file} :: File moved for path of destination")
+        console.assertion(f"{idx} :: {file} :: File moved for path of destination")
     except Exception as e:
-        console.fail(f"{file} :: File not moved for path of destination")
+        console.fail(f"{idx} :: {file} :: File not moved for path of destination")
 
 console.footer(f"FINISHED THE COPY PROCESS: {datetime.datetime.now()}")
